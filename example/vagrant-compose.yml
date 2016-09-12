@@ -1,0 +1,16 @@
+services:
+  manager1:
+    box: vagrant-centos-7.1
+    url: https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
+    ip: 192.168.99.100
+    memory: 1024
+  worker1:
+    box: vagrant-centos-7.1
+    url: https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
+    ip: 192.168.99.101
+    memory: 1024
+  worker2:
+    box: vagrant-centos-7.1
+    url: https://github.com/CommanderK5/packer-centos-template/releases/download/0.7.1/vagrant-centos-7.1.box
+    ip: 192.168.99.102
+    memory: 1024

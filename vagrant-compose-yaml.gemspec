@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors       = "innossh"
   s.email         = "innossh@users.noreply.github.com"
   s.homepage      = "https://github.com/innossh/vagrant-compose-yaml"
-  s.summary       = "Enables Vagrant to manage multi-machine by YAML."
-  s.description   = "Enables Vagrant to manage multi-machine by YAML."
+  s.summary       = "Sets up your working directory to be a Vagrant-managed multi-machine environment by YAML."
+  s.description   = "Sets up your working directory to be a Vagrant-managed multi-machine environment by YAML."
 
   # The following block of code determines the files that should be included
   # in the gem. It does this by reading all the files in the directory where

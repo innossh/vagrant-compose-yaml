@@ -3,6 +3,7 @@
 
 # editors
 *.swp
+.idea
 
 # Bundler/Rubygems
 *.gem
@@ -10,6 +11,7 @@
 pkg/*
 tags
 Gemfile.lock
+vendor/bundle
 
 # Vagrant
 .vagrant
@@ -19,3 +21,7 @@ Vagrantfile
 # RVM files for gemset/ruby setting
 .ruby-*
 .rvmrc
+
+example/*
+!example/vagrant-compose.yml
+

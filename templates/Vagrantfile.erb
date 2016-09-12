@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+<%- services.each do |k, v| -%>
+  config.vm.define :<%= k %> do |c|
+    c.vm.box = "<%= v['box'] %>"
+  <%- if v['url'] -%>
+    c.vm.box_url = "<%= v['url'] %>"
+  <%- end -%>
+    c.vm.hostname = "<%= k %>"
+  <%- if v['ip'] -%>
+    c.vm.network "private_network", ip: "<%= v['ip'] %>"
+  <%- end -%>
+  <%- if v['memory'] -%>
+    c.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "<%= v['memory'] %>"]
+    end
+  <%- end -%>
+  end
+<%- end -%>
+end
