@@ -1,5 +1,7 @@
 # Vagrant Compose Yaml
 
+[![Gem Version](https://badge.fury.io/rb/vagrant-compose-yaml.svg)](https://badge.fury.io/rb/vagrant-compose-yaml)
+
 `vagrant-compose-yaml` is a plugin that sets up your working directory to be a Vagrant-managed multi-machine environment by YAML.
 
 ## Installation
