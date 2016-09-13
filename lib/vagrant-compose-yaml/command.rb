@@ -41,8 +41,8 @@ module VagrantPlugins
 
         template = 'templates/Vagrantfile'
         template_path = ::VagrantPlugins::ComposeYaml.source_root.join(template)
-        compose_yaml_data= YAML.load_file(Pathname.new(options[:file]).expand_path(@env.cwd))
-        contents = Vagrant::Util::TemplateRenderer.render(template_path, compose_yaml_data)
+        vagrantfile_data = yaml2vagrantdata(Pathname.new(options[:file]).expand_path(@env.cwd))
+        contents = Vagrant::Util::TemplateRenderer.render(template_path, vagrantfile_data)
 
         if save_path
           begin
@@ -59,6 +59,20 @@ module VagrantPlugins
         end
 
         0
+      end
+
+      def yaml2vagrantdata(yaml_path)
+        yaml = YAML.load_file(yaml_path)
+        yaml['services'].each do |name, service|
+          if service['ports'] != nil
+            service['forwarded_port'] = Array.new
+            service['ports'].each do |port|
+              host, guest = port.split(':')
+              service['forwarded_port'].push({'host' => host, 'guest' => guest})
+            end
+          end
+        end
+        yaml
       end
     end
   end

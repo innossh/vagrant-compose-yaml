@@ -12,6 +12,11 @@ Vagrant.configure("2") do |config|
   <%- if v['ip'] -%>
     c.vm.network "private_network", ip: "<%= v['ip'] %>"
   <%- end -%>
+  <%- if v['forwarded_port'] -%>
+    <%- v['forwarded_port'].each do |port| -%>
+    c.vm.network "forwarded_port", guest: <%= port['guest'] %>, host: <%= port['host'] %>
+    <%- end -%>
+  <%- end -%>
   <%- if v['memory'] -%>
     c.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "<%= v['memory'] %>"]

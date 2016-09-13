@@ -12,7 +12,8 @@ $ vagrant plugin install vagrant-compose-yaml
 
 ## Usage
 
-To set up current directory to be a Vagrant-managed multi-machine environment by `vagrant-compose.yml`, run the following commands:
+Put the YAML file named `vagrant-compose.yml` on your working directory. (e.g. [vagrant-compose.yml](/example/vagrant-compose.yml))
+Then run the following commands:
 
 ```
 $ vagrant compose-yaml
