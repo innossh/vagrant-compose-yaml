@@ -71,6 +71,13 @@ module VagrantPlugins
               service['forwarded_port'].push({'host' => host, 'guest' => guest})
             end
           end
+          if service['volumes'] != nil
+            service['synced_folder'] = Array.new
+            service['volumes'].each do |volume|
+              host, guest = volume.split(':')
+              service['synced_folder'].push({'host' => host, 'guest' => guest})
+            end
+          end
         end
         yaml
       end
