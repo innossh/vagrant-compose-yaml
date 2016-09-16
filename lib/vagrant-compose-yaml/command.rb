@@ -63,7 +63,16 @@ module VagrantPlugins
 
       def yaml2vagrantdata(yaml_path)
         yaml = YAML.load_file(yaml_path)
-        yaml['services'].each do |name, service|
+        add_basic_parameters(yaml['services'])
+        add_links(yaml['services'])
+        yaml
+      end
+
+      def add_basic_parameters(services)
+        services.each_with_index do |(name, service), index|
+          if service['ip'] == nil
+            service['ip'] = "192.168.33.1#{index}"
+          end
           if service['ports'] != nil
             service['forwarded_port'] = Array.new
             service['ports'].each do |port|
@@ -79,7 +88,18 @@ module VagrantPlugins
             end
           end
         end
-        yaml
+      end
+
+      def add_links(services)
+        services.each_with_index do |(name, service), index|
+          service['links'] = Array.new
+          services.each_with_index do |(name2, service2), index2|
+            if index == index2
+              next
+            end
+            service['links'].push({'host' => name2, 'ip' => service2['ip']})
+          end
+        end
       end
     end
   end
